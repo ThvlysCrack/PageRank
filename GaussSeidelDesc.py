@@ -1,9 +1,8 @@
 import numpy as np
 import time
-import recupMat
 
-def pageRankGaussSeidelDesc(alpha, filename):
-    csr_mat, zero_rows = recupMat.buildCSRMatrix(filename)
+
+def pageRankGaussSeidelDesc(alpha, csr_mat, zero_rows):
     nbsom = csr_mat.shape[0]
 
     # Initialiser le vecteur rank avec des valeurs uniformes

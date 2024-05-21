@@ -1,9 +1,8 @@
 import numpy as np
 import time
-import recupMat
 
-def pageRank(alpha, filename):
-    csr_mat, zero_rows = recupMat.buildCSRMatrix(filename)
+def pageRank(alpha, csr_mat, zero_rows):
+    
     nbsom = csr_mat.shape[0]
 
     rank = np.ones((nbsom, 1)) / nbsom
