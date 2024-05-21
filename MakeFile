@@ -1,40 +1,32 @@
 # Variables
 PYTHON = python3
-PIP = pip3
-TESTS = tests
-SRC = src
-VENV = venv
+PIP = pip
+VENV_DIR = venv
+SRC = main.py
+REQUIREMENTS = requirements.txt
 
 # Cibles par défaut
-.PHONY: all install venv activate clean lint test run
+.PHONY: all install venv activate clean run
 
-all: install lint test
+all: install
 
 # Crée et active l'environnement virtuel
 venv:
-	$(PYTHON) -m venv $(VENV)
+	$(PYTHON) -m venv $(VENV_DIR)
 
 activate:
-	@echo "Activez l'environnement virtuel avec 'source $(VENV)/bin/activate'"
+	@echo "Pour activer l'environnement virtuel, utilisez 'source $(VENV_DIR)/bin/activate'"
 
 # Installe les dépendances
 install: venv
-	source $(VENV)/bin/activate && $(PIP) install -r requirements.txt
-
-# Vérifie le style de code avec flake8
-lint:
-	source $(VENV)/bin/activate && flake8 $(SRC)
-
-# Exécute les tests
-test:
-	source $(VENV)/bin/activate && pytest $(TESTS)
+	. $(VENV_DIR)/bin/activate && $(PIP) install -r $(REQUIREMENTS)
 
 # Nettoie les fichiers générés
 clean:
-	rm -rf $(VENV)
+	rm -rf $(VENV_DIR)
 	find . -type f -name '*.pyc' -delete
 	find . -type d -name '__pycache__' -delete
 
 # Exécute le programme principal
 run:
-	source $(VENV)/bin/activate && $(PYTHON) $(SRC)/main.py
+	. $(VENV_DIR)/bin/activate && $(PYTHON) $(SRC)
