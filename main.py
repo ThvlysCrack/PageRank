@@ -29,12 +29,18 @@ if __name__ == "__main__":
     rep = int(input("Combien de simulations voule-vous faire ? : "))
     
     init_alpha = float(input("A combien voulez-vous initialiser le facteur de damping alpha ? : "))
-    while (init_alpha < 0 or init_alpha > 1 ):
-        init_alpha = float(input("Alpha doit avoir une valeur comprise entre 0 et 1 inclus: "))
+    if (init_alpha < 0 or init_alpha > 1):
+        while (True):
+            if (init_alpha >= 0 and init_alpha <= 1):
+                init_alpha = float(input("Alpha doit avoir une valeur comprise entre 0 et 1 inclus: "))
+                break
     
     fin_alpha = float(input("A quelle valeur de alpha voulez-vous vous arrêter ? : "))
-    while (fin_alpha < 0 or fin_alpha > 1 or fin_alpha<=init_alpha):
-        init_alpha = float(input("La valeur d'arrêt d'alpha doit avoir une valeur comprise entre 0 et 1 inclus et être inférieure à la valeur d'initialisation: "))
+    if (fin_alpha < 0 or fin_alpha > 1 or fin_alpha < init_alpha):
+        while (True):
+            if (fin_alpha >= 0 or fin_alpha <= 1 or fin_alpha >= init_alpha):
+                init_alpha = float(input("La valeur d'arrêt d'alpha doit avoir une valeur comprise entre 0 et 1 inclus et être inférieure à la valeur d'initialisation: "))
+                break
         
     marge = fin_alpha-init_alpha
     pas = marge / rep
@@ -47,7 +53,8 @@ if __name__ == "__main__":
         if algo == 1 :
             tp, it  = pr.pageRank(alpha, csr_mat, zero_rows)
         else :
-            tp, it  = gs.pageRankGaussSeidelDesc(alpha, csr_mat, zero_rows)
+            tp, it  = gs.pageRankGaussSeidelDesc(alpha, csr_mat)
+            #tp, it  = gs.pageRankGaussSeidelDesc(alpha, csr_mat, zero_rows)
         
         iter.append((alpha,it))
         temps.append((alpha,tp))

@@ -5,19 +5,21 @@ def pageRank(alpha, csr_mat, zero_rows):
     
     nbsom = csr_mat.shape[0]
 
-    rank = np.ones((nbsom, 1)) / nbsom
+    rank = np.random.rand(nbsom, 1)
+    rank /= np.sum(rank)  # Normaliser correctement le vecteur rank
+
     e = np.ones((nbsom, 1))
     
     iteration = 0
-    start_time = time.time()  # Mesurer le temps de début
+    start_time = time.time()  #Lancement du chrono de convergence
 
     while True:
         m2 = alpha * csr_mat @ rank 
 
-        # Ajouter le terme de téléportation directement
+        
         m2 += (1 - alpha) * (e / nbsom)
 
-        # Ajouter la contribution des lignes sans arcs sortants
+        
         zero_sum_contrib = np.sum(rank[list(zero_rows)]) / nbsom
         m2 += zero_sum_contrib * e
 
