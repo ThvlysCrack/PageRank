@@ -6,7 +6,6 @@ def pageRankGaussSeidelDesc(alpha, csr_mat):
     epsilon = 1e-6
     n = csr_mat.shape[0]
     
-
     pagerank = np.ones(n) / n
     
     # Calculer le nombre de liens sortants pour chaque page

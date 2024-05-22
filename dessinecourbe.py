@@ -28,7 +28,7 @@ def tracer_graph_iter(points, algo, matrice):
     # Construire le nom du fichier
     filename = f"graphique/{algo_name}_{matrice}_Iterations_{len(points)}.png"
     
-    plt.axis([-0.1, 1.1, 0, 500])
+    plt.axis([0.7, 1.1, 0, 1200])
     
     # Sauvegarder le graphique en PNG
     plt.savefig(filename)
@@ -64,7 +64,7 @@ def tracer_graph_temps(points, algo, matrice):
     # Construire le nom du fichier
     filename = f"graphique/{algo_name}__{matrice}_Temps_{len(points)}.png"
     
-    plt.axis([-0.1, 1.1, 0, 100])
+    plt.axis([0.7, 1.1, 0, 300])
 
     # Sauvegarder le graphique en PNG
     plt.savefig(filename)

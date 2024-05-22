@@ -26,7 +26,7 @@ if __name__ == "__main__":
     matrice = int(input("Veuillez entrer le numéro de la matrice à utiliser : "))
     matrice = mat[matrice-1]
     
-    rep = int(input("Combien de simulations voule-vous faire ? : "))
+    rep = int(input("Combien de simulations voulez-vous faire ? : "))
     
     init_alpha = float(input("A combien voulez-vous initialiser le facteur de damping alpha ? : "))
     if (init_alpha < 0 or init_alpha > 1):
